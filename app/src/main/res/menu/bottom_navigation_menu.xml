@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/home_bn"
+        android:enabled="true"
+        android:icon="@mipmap/icon_home"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/profile_bn"
+        android:icon="@mipmap/icon_profile"
+        android:enabled="true"
+        android:title="@string/profile"/>
+
+</menu>
