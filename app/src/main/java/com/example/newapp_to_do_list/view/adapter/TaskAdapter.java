@@ -86,7 +86,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             }
 
 
-            holder.buttonArrowExpand.setOnClickListener(new View.OnClickListener() {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (holder.layout.getVisibility() == View.GONE) {
@@ -95,7 +95,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                         holder.time_from_to.setVisibility(View.VISIBLE);
                         holder.currentTime.setVisibility(View.VISIBLE);
                         holder.bar.setVisibility(View.VISIBLE);
-                        holder.buttonArrowExpand.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+
 
                     } else {
                         TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
@@ -103,7 +103,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                         holder.time_from_to.setVisibility(View.GONE);
                         holder.currentTime.setVisibility(View.GONE);
                         holder.bar.setVisibility(View.GONE);
-                        holder.buttonArrowExpand.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+
 
                     }
 
@@ -134,7 +134,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         ConstraintLayout linearLayout;
         TextView timePicked;
         TextView currentTime;
-        Button buttonArrowExpand;
         TextView PlanDetail;
         ImageView bar;
         TextView layout;
@@ -145,7 +144,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             time_from_to = itemView.findViewById(R.id.date_from);
             currentTime = itemView.findViewById(R.id.date_to);
             cardView = itemView.findViewById(R.id.task_cardview);
-            buttonArrowExpand = itemView.findViewById(R.id.btn_expands);
             planeName = itemView.findViewById(R.id.plan_name);
             bar = itemView.findViewById(R.id.bar);
             linearLayout = itemView.findViewById(R.id.stretch_linearlayout);

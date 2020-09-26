@@ -7,10 +7,12 @@
     android:layout_height="wrap_content">
 
 
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/calender"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/pantonnarrowdemo_black"
         android:gravity="center|left"
         android:text="Calender"
@@ -20,14 +22,14 @@
         app:layout_constraintEnd_toStartOf="@+id/numberoftask"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_name" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/numberoftask"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:elevation="6dp"
         android:background="@drawable/circle_text"
+        android:elevation="6dp"
         android:fontFamily="@font/pantondemo_light"
         android:gravity="center"
         android:shadowDx="4"
@@ -36,7 +38,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/text_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

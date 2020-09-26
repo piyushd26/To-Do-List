@@ -52,7 +52,7 @@
             android:elevation="10dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
             android:gravity="center"
-            android:text="tom"
+            android:text="tom cruise"
             android:textColor="@color/black"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/profile_imageview_forpallete"

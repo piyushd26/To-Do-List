@@ -55,6 +55,7 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -64,8 +65,7 @@
             android:id="@+id/plan_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:elevation="6dp"
+            android:layout_marginTop="2dp"
             android:paddingRight="130dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
             android:gravity="center"
@@ -77,7 +77,7 @@
             android:id="@+id/date_from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="42dp"
             android:elevation="6dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
             android:gravity="center"
@@ -87,19 +87,12 @@
             android:visibility="gone" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_expands"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="210dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/plandetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="70dp"
             android:layout_marginBottom="6dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
             android:gravity="center"

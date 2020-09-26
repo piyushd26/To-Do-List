@@ -2,9 +2,11 @@ package com.example.newapp_to_do_list.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -69,12 +71,12 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         if (selectedPosition == position) {
             holder.cardview.setBackgroundResource(R.drawable.backgroundforcardaview);
             taskListFragment.setPostion(date_.get(selectedPosition));
-            holder.cardview.setCardElevation(10);
-          
+
 
 
         } else {
-            holder.cardview.setBackgroundResource(R.drawable.back_darkgrey);
+            holder.cardview.setBackgroundResource(R.drawable.background_grey);
+
 
         }
 
@@ -83,6 +85,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 selectedPosition = position;
+
                 notifyDataSetChanged();
 
                 taskListFragment = new TaskListFragment();
