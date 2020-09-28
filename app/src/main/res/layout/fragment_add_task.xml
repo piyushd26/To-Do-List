@@ -9,37 +9,22 @@
     tools:context=".view.fragment.AddTaskFragment">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/taskname1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-
-        android:fontFamily="@font/pantonnarrowdemo_black"
-        android:paddingLeft="20dp"
-        android:text="Task Name"
-        android:textColor="@color/darkgrey"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_addtask"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/ed_addtask"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/background_grey"
         android:fontFamily="@font/pantonnarrowdemo_black"
         android:gravity="center"
         android:maxWidth="16dp"
+        android:hint="Task Name"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_addtask"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskname1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -56,33 +41,30 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/ed_addtask"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/taskname1" />
+        app:layout_constraintTop_toTopOf="@+id/ed_addtask" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/claer_all_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/andada_regular"
+        android:elevation="3dp"
         android:gravity="center"
-        android:text="clear "
+        android:text="@string/clear"
         android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btn_addtask"
-        app:layout_constraintTop_toBottomOf="@+id/btn_addtask" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_of_task_ed"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:layout_weight="10"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_of_task_ed">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
@@ -98,9 +80,9 @@
             android:layout_weight="4"
             android:fontFamily="@font/pantondemo_light"
             android:gravity="center"
-            android:text="Starting date"
+            android:text="@string/starting_date"
             android:textColor="@color/black"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/todate"
@@ -109,9 +91,9 @@
             android:layout_weight="4"
             android:fontFamily="@font/pantondemo_light"
             android:gravity="center"
-            android:text="Ending date"
+            android:text="@string/ending_date"
             android:textColor="@color/black"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -141,10 +123,10 @@
             android:layout_weight="1.5"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
-            android:paddingRight="100dp"
-            android:text="10 minutes before"
+            android:paddingEnd="100dp"
+            android:text="@string/_10_minutes_before"
             android:textColor="@color/black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
@@ -162,9 +144,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="10"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView2"
@@ -181,10 +164,10 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/pantondemo_light"
             android:gravity="center"
-            android:paddingRight="30dp"
-            android:text="Reminder"
+            android:paddingEnd="30dp"
+            android:text="@string/reminder"
             android:textColor="@color/black"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -195,7 +178,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/picktime_back"
         android:fontFamily="@font/pantonnarrowdemo_black"
-        android:text="Pick Time"
+        android:text="@string/pick_time"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -205,14 +188,14 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/title_of_task_ed"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_height="80dp"
         android:background="@drawable/background_grey"
         android:fontFamily="@font/pantonnarrowdemo_black"
         android:gravity="center"
-        android:hint="Description"
+        android:hint="@string/description"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_addtask" />

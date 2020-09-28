@@ -8,4 +8,11 @@
     <string name="profile">Profile</string>
     <string name="add_task">Add Task</string>
     <string name="write_task_here">Write Task Here</string>
+    <string name="clear">clear</string>
+    <string name="starting_date">Starting date</string>
+    <string name="ending_date">Ending date</string>
+    <string name="_10_minutes_before">10 minutes before</string>
+    <string name="reminder">Reminder</string>
+    <string name="pick_time">Pick Time</string>
+    <string name="description">Description</string>
 </resources>
