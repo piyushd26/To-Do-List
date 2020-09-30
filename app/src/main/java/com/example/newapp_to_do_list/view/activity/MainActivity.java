@@ -70,18 +70,13 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.home_bn:
-
-                    recyclerView.setVisibility(View.VISIBLE);
-
                     selectedTab(TABHOME);
-                    //pushFragment(taskFragment, presentDay.getText().toString());
+                    recyclerView.setVisibility(View.VISIBLE);
 
                     break;
                 case R.id.profile_bn:
                     selectedTab(TABPROFILE);
                     recyclerView.setVisibility(View.GONE);
-                    //pushFragment(profileFragment, "Profile");
-
                     break;
 
             }
@@ -265,15 +260,15 @@ public class MainActivity extends AppCompatActivity implements DataInterface {
             @Override
             public void onClick(View v) {
                 recyclerView.setVisibility(View.GONE);
-                pushFragment_forBNV(addTaskFragment, "Add New Task");
+                pushFragment_forBNV(addTaskFragment);
 
             }
         });
     }
 
-    public void pushFragment_forBNV(Fragment fragment, String toolbar_name) {
-        TextView toolbar = findViewById(R.id.calender);
-        toolbar.setText(toolbar_name);
+    public void pushFragment_forBNV(Fragment fragment) {
+       // TextView toolbar = findViewById(R.id.calender);
+       // toolbar.setText(toolbar_name);
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();

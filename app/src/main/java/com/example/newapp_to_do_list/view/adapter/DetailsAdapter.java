@@ -90,7 +90,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
                 taskListFragment = new TaskListFragment();
                 taskListFragment.setPostion(date_.get(selectedPosition));
-                BaseFragment.getMainActivity().pushFragment_forBNV(taskListFragment, presentDay);
+                BaseFragment.getMainActivity().pushFragment_forBNV(taskListFragment);
 
 
             }

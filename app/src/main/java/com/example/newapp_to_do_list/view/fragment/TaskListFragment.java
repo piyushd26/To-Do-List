@@ -17,16 +17,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newapp_to_do_list.MyDBHelper;
 import com.example.newapp_to_do_list.R;
+import com.example.newapp_to_do_list.SimpleDividerItemDecoration;
 import com.example.newapp_to_do_list.common.Utility;
 import com.example.newapp_to_do_list.model.pojo.Plans;
 import com.example.newapp_to_do_list.view.DataInterface;
 import com.example.newapp_to_do_list.view.activity.MainActivity;
+import com.example.newapp_to_do_list.view.adapter.AllTasksListAdapter;
 import com.example.newapp_to_do_list.view.adapter.TaskAdapter;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -47,14 +50,18 @@ public class TaskListFragment extends Fragment implements DataInterface {
     DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     int countRows;
     TextView toolbar_taskpending;
-    Integer selectedPositionFromAdapter;
+    Integer selectedPositionFromDetailAdapter;
     String fromloop = "fromloop";
     List<String> planDataFromDatabase = new ArrayList<>();
     List<Integer> listOfPositionFfromDatabase = new ArrayList<>();
+    Plans plans = new Plans();
     int countTaskFromLoop = 0;
     Date datefrom = null;
+    RecyclerView recyclerView_allTaskList;
     Date datecurrent = null;
-
+    List<String> newListAll = new ArrayList<>();
+    TextView allTasks;
+    List<String> swipedPositionFromAdapter = new ArrayList<>();
 
     @Override
 
@@ -72,6 +79,8 @@ public class TaskListFragment extends Fragment implements DataInterface {
         recyclerView_taskfragment = view.findViewById(R.id.rv_tasklist);
         toolbar_taskpending = view.findViewById(R.id.numberoftask);
         helper = new MyDBHelper(BaseFragment.getMainActivity());
+        allTasks = view.findViewById(R.id.tv_pendin);
+        recyclerView_allTaskList = view.findViewById(R.id.rv_alltasks);
         countRows = helper.getCount();
 
         retrieveDatabase();
@@ -81,27 +90,65 @@ public class TaskListFragment extends Fragment implements DataInterface {
     public void retrieveDatabase() {
         helper = new MyDBHelper(BaseFragment.getMainActivity());
 
-
         for (int p = 0; p < countRows; p++) {
 
             planDataFromDatabase = helper.getDBData(p + 1);
             ALLdateFrom.addAll(Collections.singletonList(planDataFromDatabase.get(1)));
 
-
-            if (selectedPositionFromAdapter != null) {
-                try {
-                    datefrom = sdf.parse(ALLdateFrom.get(p));
-                    datecurrent = sdf.parse(utility.getCurrentDate(selectedPositionFromAdapter));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if (sdf.format(datefrom).compareTo(sdf.format(datecurrent)) == 0) {
-                    countTaskFromLoop = countTaskFromLoop + 1;
-                    listOfPositionFfromDatabase.add(p);
-                    adapter_tasklist(planDataFromDatabase, fromloop, countTaskFromLoop, listOfPositionFfromDatabase);
-                }
+            if (selectedPositionFromDetailAdapter != null) {
+                adapterSelected(p);
+            } else {
+                adapterNotSelected(p);
             }
         }
+         adapterAllTaskList();
+    }
+
+    private void adapterAllTaskList() {
+
+        allTasks.setVisibility(View.GONE);
+        recyclerView_allTaskList.setVisibility(View.GONE);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        AllTasksListAdapter allTasksListAdapter = new AllTasksListAdapter(getContext(), newListAll, countRows);
+        recyclerView_allTaskList.setLayoutManager(linearLayoutManager);
+        recyclerView_allTaskList.setHasFixedSize(true);
+        recyclerView_allTaskList.setAdapter(allTasksListAdapter);
+
+    }
+
+
+    private void adapterNotSelected(int p) {
+
+        Calendar calendar = Calendar.getInstance();
+        int currentDateCalendar = calendar.get(Calendar.DATE);
+        try {
+            datefrom = sdf.parse(ALLdateFrom.get(p));
+            datecurrent = sdf.parse(utility.getCurrentDate(currentDateCalendar));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (sdf.format(datefrom).compareTo(sdf.format(datecurrent)) == 0) {
+            countTaskFromLoop = countTaskFromLoop + 1;
+            listOfPositionFfromDatabase.add(p);
+            adapter_tasklist(planDataFromDatabase, fromloop, countTaskFromLoop, listOfPositionFfromDatabase);
+
+        }
+    }
+
+    private void adapterSelected(int p) {
+
+        try {
+            datefrom = sdf.parse(ALLdateFrom.get(p));
+            datecurrent = sdf.parse(utility.getCurrentDate(selectedPositionFromDetailAdapter));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (sdf.format(datefrom).compareTo(sdf.format(datecurrent)) == 0) {
+            countTaskFromLoop = countTaskFromLoop + 1;
+            listOfPositionFfromDatabase.add(p);
+            adapter_tasklist(planDataFromDatabase, fromloop, countTaskFromLoop, listOfPositionFfromDatabase);
+        }
+
     }
 
     public void insertdatabase(MainActivity mainActivity, Plans planData) {
@@ -116,6 +163,7 @@ public class TaskListFragment extends Fragment implements DataInterface {
         recyclerView_taskfragment.setHasFixedSize(true);
         taskAdapter = new TaskAdapter(getContext(), data, from, countTasks, newposition);
         recyclerView_taskfragment.setLayoutManager(linearLayoutManager);
+        recyclerView_taskfragment.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
         recyclerView_taskfragment.setAdapter(taskAdapter);
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
@@ -125,8 +173,13 @@ public class TaskListFragment extends Fragment implements DataInterface {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
+                helper = new MyDBHelper(BaseFragment.getMainActivity());
                 int position = viewHolder.getAdapterPosition();
+
+
+
+                //
+
                 Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
                 taskAdapter.notifyDataSetChanged();
             }
@@ -139,7 +192,7 @@ public class TaskListFragment extends Fragment implements DataInterface {
 
 
     public void setPostion(Integer integer) {
-        this.selectedPositionFromAdapter = integer;
+        this.selectedPositionFromDetailAdapter = integer;
     }
 
     @Override
@@ -148,5 +201,8 @@ public class TaskListFragment extends Fragment implements DataInterface {
     }
 
 
+    public void setPostionFromTaskAdapter(String position) {
+        this.swipedPositionFromAdapter.add(position);
+    }
 }
 

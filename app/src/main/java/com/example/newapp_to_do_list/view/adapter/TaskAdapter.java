@@ -69,6 +69,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             planDataFromDatabase = myDBHelper.getDBData(posi+1);
 
         }
+
         plans.setTaskpending(myDBHelper.getCount());
         if (planDataFromDatabase != null) {
 

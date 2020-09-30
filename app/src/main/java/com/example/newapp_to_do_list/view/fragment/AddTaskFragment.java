@@ -70,9 +70,29 @@ public class AddTaskFragment extends Fragment implements DataInterface {
     MainActivity mainActivity;
     String presentDay;
     String addlistheadeing;
-    private Calendar date;
     double seconds;
     String presentDay_Interface;
+    SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+    Plans plan = new Plans();
+    SimpleDateFormat sdf_time = new SimpleDateFormat("hh:mm a");
+    Date strDate = null;
+    Date endDate = null;
+    Date currentCompeleteDate = null;
+    Date currentTime = null;
+    Date timePicked = null;
+    String sd = dateTimePicker_dayofMonth + "-" + dateTimePicker_monthofyear + "-" + dateTimePicker_year;
+    String ed = dateTimePicker_dayofMonth2 + "-" + dateTimePicker_monthofyear2 + "-" + dateTimePicker_year2;
+
+    Calendar calendarCheck_date = Calendar.getInstance();
+    int todaysDate = calendarCheck_date.get(Calendar.DATE);
+    int todaysMonth = calendarCheck_date.get(Calendar.MONTH);
+    int todaysYear = calendarCheck_date.get(Calendar.YEAR);
+    int currenHour = calendarCheck_date.get(Calendar.HOUR);
+    int currentMinutes = calendarCheck_date.get(Calendar.MINUTE);
+    int currentSecond = calendarCheck_date.get(Calendar.SECOND);
+    int AMPM = calendarCheck_date.get(Calendar.AM_PM);
+    String currentAMPM;
+    private Calendar date;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,21 +131,12 @@ public class AddTaskFragment extends Fragment implements DataInterface {
             public void onClick(View v) {
                 String fromdate = from_date.getText().toString();
                 String todate = to_date.getText().toString();
-
                 String alarmTime = alarm.getText().toString();
                 if (checkBox.isChecked()) {
                     tp_checked_min = tp_min - 10;
                     alarm.setText(tp_hour + ":" + tp_checked_min + " " + ampm);
                 }
-                Calendar calendarCheck_date = Calendar.getInstance();
-                int todaysDate = calendarCheck_date.get(Calendar.DATE);
-                int todaysMonth = calendarCheck_date.get(Calendar.MONTH);
-                int todaysYear = calendarCheck_date.get(Calendar.YEAR);
-                int currenHour = calendarCheck_date.get(Calendar.HOUR);
-                int currentMinutes = calendarCheck_date.get(Calendar.MINUTE);
-                int currentSecond = calendarCheck_date.get(Calendar.SECOND);
-                int AMPM = calendarCheck_date.get(Calendar.AM_PM);
-                String currentAMPM;
+
                 switch (AMPM) {
                     case 1:
                         currentAMPM = "PM";
@@ -135,17 +146,10 @@ public class AddTaskFragment extends Fragment implements DataInterface {
                         break;
                 }
 
-                SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
-                SimpleDateFormat sdf_time = new SimpleDateFormat("hh:mm a");
+
                 sdf2.setTimeZone(TimeZone.getTimeZone("IST"));
                 sdf_time.setTimeZone(TimeZone.getTimeZone("IST"));
-                Date strDate = null;
-                Date endDate = null;
-                Date currentCompeleteDate = null;
-                Date currentTime = null;
-                Date timePicked = null;
-                String sd = dateTimePicker_dayofMonth + "-" + dateTimePicker_monthofyear + "-" + dateTimePicker_year;
-                String ed = dateTimePicker_dayofMonth2 + "-" + dateTimePicker_monthofyear2 + "-" + dateTimePicker_year2;
+
                 try {
 
                     strDate = sdf2.parse(sd);
@@ -166,7 +170,7 @@ public class AddTaskFragment extends Fragment implements DataInterface {
 
                     if (currentCompeleteDate.equals(strDate)) {
                         Toast.makeText(getContext(), "Task set for today", Toast.LENGTH_LONG).show();
-                        if (currentTime.equals(timePicked)){
+                      //  if (currentTime.equals(timePicked)) {
 
 
                             SimpleDateFormat sdf_ = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
@@ -187,10 +191,10 @@ public class AddTaskFragment extends Fragment implements DataInterface {
 
 
                             startAlert(seconds);
-                        }
+                       // }
                     }
 
-                    Plans plan = new Plans();
+
                     plan.setName(ed_titleoftask.getText().toString());
                     plan.setFromdate(fromdate);
                     plan.setTodate(todate);
@@ -200,7 +204,7 @@ public class AddTaskFragment extends Fragment implements DataInterface {
 
                     taskListFragment.insertdatabase(BaseFragment.getMainActivity(), plan);
                     recyclerView_.setVisibility(View.VISIBLE);
-                    BaseFragment.getMainActivity().pushFragment_forBNV(taskListFragment, presentDay);
+                    BaseFragment.getMainActivity().pushFragment_forBNV(taskListFragment);
 
 
                 } else {
@@ -325,9 +329,9 @@ public class AddTaskFragment extends Fragment implements DataInterface {
 
         //((5Hours X 60 minutes) + 30minutes)60sec = total seconds   20 44
 
-      //  int startAlert_hh = tp_hour * 60;
-      //  int startAlert_mm = startAlert_hh + tp_min;
-      //  int startAlert_ss = startAlert_mm * 60;
+        //  int startAlert_hh = tp_hour * 60;
+        //  int startAlert_mm = startAlert_hh + tp_min;
+        //  int startAlert_ss = startAlert_mm * 60;
 
         int i = Integer.parseInt(String.valueOf(seconds));
 
@@ -354,8 +358,8 @@ public class AddTaskFragment extends Fragment implements DataInterface {
 
     @Override
     public void data(String presentday, String AddlistToolbar, String ProfileToolbar, Context context, int count) {
-        this.presentDay_Interface=presentday;
-        BaseFragment.getMainActivity().settoolbarText(AddlistToolbar,count);
+        this.presentDay_Interface = presentday;
+        BaseFragment.getMainActivity().settoolbarText(AddlistToolbar, count);
 
     }
 }

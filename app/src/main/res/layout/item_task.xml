@@ -12,7 +12,6 @@
         android:id="@+id/time_picked"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_weight="4"
         android:background="@color/white"
         android:fontFamily="@font/pantonnarrowdemo_black"
@@ -42,7 +41,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bar"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:background="@mipmap/line"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/date_to"
@@ -52,10 +51,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/task_cardview"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -65,24 +63,23 @@
             android:id="@+id/plan_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:paddingRight="130dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
+            android:paddingRight="10dp"
             android:gravity="center"
             android:text="planing"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/date_from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="40dp"
             android:elevation="6dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
             android:gravity="center"
             android:text="DATE FROM"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="12dp"
             android:visibility="gone" />
 
@@ -92,7 +89,8 @@
             android:id="@+id/plandetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="72dp"
+            android:textColor="@color/white"
             android:layout_marginBottom="6dp"
             android:fontFamily="@font/pantonnarrowdemo_black"
             android:gravity="center"

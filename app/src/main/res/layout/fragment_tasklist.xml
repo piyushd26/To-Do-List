@@ -15,7 +15,7 @@
         android:layout_marginTop="24dp"
         android:background="@color/white"
         android:fontFamily="@font/pantonnarrowdemo_black"
-        android:text="Daily Tasks"
+        android:text="Today's Tasks"
         android:textColor="@color/black"
         android:textSize="26dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,10 +27,34 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_pendin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dailytasks" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_pendin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/pantonnarrowdemo_black"
+        android:visibility="gone"
+        android:text="All Tasks"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_alltasks"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_alltasks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

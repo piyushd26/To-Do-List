@@ -16,7 +16,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public static final String dbname = "plan.db";
     public static final int version = 1;
-    public static final String TableName = "plans";
+    public static final String TABLE_NAME = "plans";
+    private static final String KEY_NAME = "name";
     Context cnt;
 
     public MyDBHelper(Context context) {
@@ -72,7 +73,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         List<String> plansList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT  * FROM " + TableName + " WHERE id = " + id;
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE id = " + id;
         Log.d("TAG", selectQuery);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -96,8 +97,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return plansList;
     }
 
+
     public int getCount() {
-        String countQuery = "SELECT  * FROM " + TableName;
+        String countQuery = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
@@ -105,16 +107,19 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void deleteItem(String get_ID) {
+    public void deleteItem(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from " + TableName + " where id='" + get_ID );
+         db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + "name" + "= " + name + "");
+        db.close();
+
+
     }
 
-    public List<String> getFromDates(int id) {
+    public List<String> getData(int id) {
         List<String> plansList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT  * FROM " + TableName + " WHERE id = " + id;
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE id = " + id;
         Log.d("TAG", selectQuery);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -123,21 +128,16 @@ public class MyDBHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
             do {
-                Plans plans = new Plans();
-                plansList.add(cursor.getString(1));
-                plansList.add(cursor.getString(2));
-                plansList.add(cursor.getString(3));
-                plansList.add(cursor.getString(4));
-                plansList.add(cursor.getString(5));
-                plansList.add(cursor.getString(6));
 
-                plansList.add(String.valueOf(plans));
+                plansList.add(cursor.getString(1));
+
+
 
             } while (cursor.moveToNext());
         }
         return plansList;
     }
 
-    }
+}
 
 
